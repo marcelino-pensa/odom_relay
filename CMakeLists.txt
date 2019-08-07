@@ -16,11 +16,13 @@ find_package(catkin REQUIRED COMPONENTS
   tf
 )
 
+find_package(Eigen REQUIRED)
+
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES odom_relay
- CATKIN_DEPENDS geometry_msgs nav_msgs roscpp std_msgs tf
-#  DEPENDS system_lib
+ CATKIN_DEPENDS geometry_msgs nav_msgs roscpp std_msgs tf 
+ DEPENDS Eigen
 )
 
 ###########
@@ -32,6 +34,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${Eigen_INCLUDE_DIRS}
 )
 
 add_executable(odom_relay_lpe src/odom_relay_lpe.cpp)
@@ -42,5 +45,9 @@ add_executable(odom_relay_tf src/odom_relay_tf.cpp)
 add_dependencies(odom_relay_tf ${catkin_EXPORTED_TARGETS})
 target_link_libraries(odom_relay_tf ${catkin_LIBRARIES})
 
-install(TARGETS odom_relay_tf
+add_executable(odom_relay_twist_body src/odom_relay_twist_body.cpp)
+add_dependencies(odom_relay_twist_body ${catkin_EXPORTED_TARGETS})
+target_link_libraries(odom_relay_twist_body ${catkin_LIBRARIES})
+
+install(TARGETS odom_relay_twist_body
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
