@@ -49,5 +49,9 @@ add_executable(odom_relay_twist_body src/odom_relay_twist_body.cpp)
 add_dependencies(odom_relay_twist_body ${catkin_EXPORTED_TARGETS})
 target_link_libraries(odom_relay_twist_body ${catkin_LIBRARIES})
 
+add_executable(odom_relay_pose src/odom_relay_pose.cpp)
+add_dependencies(odom_relay_pose ${catkin_EXPORTED_TARGETS})
+target_link_libraries(odom_relay_pose ${catkin_LIBRARIES})
+
 install(TARGETS odom_relay_twist_body
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
