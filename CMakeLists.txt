@@ -9,6 +9,7 @@ add_compile_options(-std=c++11)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
+  sensor_msgs
   nav_msgs
   roscpp
   cmake_modules
@@ -52,6 +53,10 @@ target_link_libraries(odom_relay_twist_body ${catkin_LIBRARIES})
 add_executable(odom_relay_pose src/odom_relay_pose.cpp)
 add_dependencies(odom_relay_pose ${catkin_EXPORTED_TARGETS})
 target_link_libraries(odom_relay_pose ${catkin_LIBRARIES})
+
+# Install targets
+install(TARGETS odom_relay_tf
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 install(TARGETS odom_relay_twist_body
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
