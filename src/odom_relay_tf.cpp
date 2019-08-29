@@ -17,7 +17,7 @@ void odomCallback(const nav_msgs::Odometry::ConstPtr& msg) {
   transform.setOrigin( tf::Vector3(pt.x, pt.y, pt.z) );
   tf::Quaternion q(quat.x, quat.y, quat.z, quat.w);
   transform.setRotation(q);
-  br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), frame_id, child_frame_id));
+  br.sendTransform(tf::StampedTransform(transform, msg->header.stamp, frame_id, child_frame_id));
 
   // geometry_msgs::PoseStamped pose;
   // pose.header = msg->header;
