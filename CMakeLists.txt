@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   cmake_modules
   std_msgs
   tf
+  laser_geometry
 )
 
 find_package(Eigen REQUIRED)
